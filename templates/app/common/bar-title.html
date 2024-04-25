@@ -1,0 +1,8 @@
+{# <!-- Cтрока заголовка --> #}
+<div class="mb-2 p-2 d-flex align-items-center justify-content-center
+     {% if btn %} {{ btn }} {% endif %}
+     {% if style.bg %} {{ style.bg }} {% else %} bg-primary {% endif %}
+     {% if style.text %} {{ style.text }} {% else %} text-light {% endif %}">
+
+    <span class="fs-3 fw-semibold">{{ titleBar }}</span>
+</div>

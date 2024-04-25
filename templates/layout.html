@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ru">
+
+    {% load static %}
+    {% get_media_prefix as media_url %}
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css"
+              href="{% static 'bootstrap-5.0.2/css/bootstrap.min.css' %}" />
+        <!-- CSS-стили -->
+        <link rel="stylesheet" type="text/css"
+              href="{% static 'css/signin.css' %}" />
+        <link rel="stylesheet" type="text/css"
+              href="{% static 'css/sidebars.css' %}" />
+
+        <!-- Иконка приложения -->
+        <link rel="shortcut icon" type="image/x-icon"
+              href="{% static 'img/favicon.ico' %}" />
+        <title>{{ title }}</title>
+    </head>
+
+    <body>
+        <!-- Bootstrap Bundle with Popper -->
+        <script defer src="{% static 'bootstrap-5.0.2/js/bootstrap.bundle.min.js' %}"></script>
+        <!-- JS-скрипты -->
+        <script defer src="{% static 'js/sidebars.js' %}"></script>
+
+        <!-- Панель сайта  -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">{{ titleBrand }}</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbar1" aria-controls="navbar1"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar1">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {% if user.pk %}
+                            <li class="nav-item me-2">
+                                <a class="nav-link" href="{% url 'orders' user.username %}">Заказы</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% if user.pk %}{% url 'offers' user.username %}
+                                {% else %}{%  url 'offers' %}{% endif %}">Проекты</a>
+                        </li>
+                        {% if user.pk and inworkCnt %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{%  url 'offers_inwork' %}">
+                                    В работе <span class="text-warning">({{ inworkCnt }})</span></a>
+                            </li>
+                        {% endif %}                        {% if user.pk %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{%  url 'offer_edit' %}">Создать проект</a>
+                            </li>
+                        {% endif %}
+
+
+                    </ul>
+                    <div class="nav navbar-nav navbar-right">
+                        {# <!-- форма поиска --> #}
+                        <form class="d-flex">{% csrf_token %}
+                            <input class="form-control me-2" type="search" placeholder="Поиск..." aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Найти</button>
+                        </form>
+                        {% include 'loginpartial.html' %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Панель категорий -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbar2" aria-controls="navbar2"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbar2">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        {% for cat in categories %}
+                            <li class="nav-item mx-2">
+                                <a class="nav-link fw-semibold"
+                                   href="{% url 'category' cat.pk %}"
+                                   onmouseover="this.classList.add('text-primary')"
+                                   onmouseout="this.classList.remove('text-primary')">
+                                    {{ cat.name }}
+                                    {# <!-- Число объектов в категории --> #}
+                                    {% with cnt=cat.get_items_cnt %}
+                                        {% if cnt %} ({{ cnt }}) {% endif %}
+                                    {% endwith %}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="mb-2">
+            {% block content %}
+                <!-- Контент страниц -->
+            {% endblock %}
+        </main>
+
+        <div style="width: 100%; height: 4rem"><!-- подкдадка перед футером --> </div>
+        <footer id="footer" class="navbar fixed-bottom footer bg-light">
+            <div class="row col-12 justify-content-center ">
+                <div class="row align-items-center col-auto col-md-9 ">
+                    <div class="col-auto col-md-auto">
+                        <button class="navbar-light navbar-toggler btn btn-outline-light"
+                                type="button" data-toggle="collapse" data-target="#footerItems"
+                                aria-controls="footerItems" aria-expanded="false" aria-label="Toggle navigation">
+                            <span>&nbsp;</span>
+                        </button>
+                    </div>
+                    <div id="footerItems" class="col-auto col-md-auto">
+                        <span class="nav-item center">&copy; {{ titleFooter }} | {{ year }}</span>
+                    </div>
+                </div>
+                <div class="col-auto col-md-auto">
+                    <button class="btn btn-sm btn-outline-dark"
+                            onclick="document.location.href='#top'">Наверх&nbsp;&uarr;&uarr;&uarr;
+                    </button>
+                </div>
+            </div>
+        </footer>
+
+    </body>
+</html>

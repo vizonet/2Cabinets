@@ -1,0 +1,434 @@
+[
+    {
+        "model": "app.city",
+        "pk": 1,
+        "fields": {
+            "name": "Москва",
+            "slug": "Moskva"
+        }
+    },
+    {
+        "model": "app.city",
+        "pk": 2,
+        "fields": {
+            "name": "Санкт-Петербург",
+            "slug": "Sankt-Peterburg"
+        }
+    },
+    {
+        "model": "app.city",
+        "pk": 3,
+        "fields": {
+            "name": "Новосибирск",
+            "slug": "Novosibirsk"
+        }
+    },
+    {
+        "model": "app.city",
+        "pk": 4,
+        "fields": {
+            "name": "Владивосток",
+            "slug": "Vladivostok"
+        }
+    },
+    {
+        "model": "app.city",
+        "pk": 5,
+        "fields": {
+            "name": "Салехард",
+            "slug": "Salehard"
+        }
+    },
+    {
+        "model": "app.category",
+        "pk": 0,
+        "fields": {
+            "name": "Разное",
+            "slug": "Raznoe"
+        }
+    },
+    {
+        "model": "app.category",
+        "pk": 1,
+        "fields": {
+            "name": "Разработка в ИТ",
+            "slug": "Razrabotka v IT"
+        }
+    },
+    {
+        "model": "app.category",
+        "pk": 2,
+        "fields": {
+            "name": "Тексты и переводы",
+            "slug": "Teksty` i perevody`"
+        }
+    },
+    {
+        "model": "app.category",
+        "pk": 3,
+        "fields": {
+            "name": "Дизайн",
+            "slug": "Dizai`n"
+        }
+    },
+    {
+        "model": "app.category",
+        "pk": 4,
+        "fields": {
+            "name": "Соцсети и реклама",
+            "slug": "Sotcseti i reclama"
+        }
+    },
+    {
+        "model": "app.category",
+        "pk": 5,
+        "fields": {
+            "name": "Съёмка и контент",
+            "slug": "S``yomka i kontent"
+        }
+    },
+    {
+        "model": "app.category",
+        "pk": 6,
+        "fields": {
+            "name": "SEO и трафик",
+            "slug": "SEO i trafik"
+        }
+    },
+    {
+        "model": "app.offer",
+        "pk": 1,
+        "fields": {
+            "number": 1,
+            "user": 4,
+            "title": "Написание статей",
+            "slug": "Napisanie statei`",
+            "description": "Создание статей для блогов, форумов, журналов и пр.",
+            "image": "img/Статьи.jpg",
+            "category": 2,
+            "cost": "500",
+            "processPeriod": 3,
+            "created": "2024-05-04T09:52:37.339Z",
+            "updated": "2024-05-10T17:58:44.498Z",
+            "isDeleted": false
+        }
+    },
+    {
+        "model": "app.offer",
+        "pk": 2,
+        "fields": {
+            "number": 2,
+            "user": 3,
+            "title": "Разработка чат-ботов",
+            "slug": "Razrabotka chat-botov",
+            "description": "Создание чат-ботов для мессенджеров. Доработка существующих. Техническая поддержка и консультирование.",
+            "image": "img/chatbots.jpg",
+            "category": 1,
+            "cost": "1000",
+            "processPeriod": 3,
+            "created": "2024-05-04T09:56:05.017Z",
+            "updated": "2024-05-13T21:45:15.480Z",
+            "isDeleted": false
+        }
+    },
+    {
+        "model": "app.offer",
+        "pk": 3,
+        "fields": {
+            "number": 3,
+            "user": 1,
+            "title": "Разработка сайтов и приложений",
+            "slug": "Razrabotka sai`tov i prilozhenii`",
+            "description": "Создание и доработка сайтов, программ для ПК. Инсталляция на хостинг-площадки.",
+            "image": "img/sites_and_apps.jpg",
+            "category": 1,
+            "cost": "3500",
+            "processPeriod": 3,
+            "created": "2024-05-04T10:32:11.349Z",
+            "updated": "2024-05-10T17:43:50.658Z",
+            "isDeleted": true
+        }
+    },
+    {
+        "model": "app.offer",
+        "pk": 4,
+        "fields": {
+            "number": 4,
+            "user": 2,
+            "title": "Правка позвоночника",
+            "slug": "Pravka pozvonochnika",
+            "description": "Правка позвоночника методом Фёдорова",
+            "image": "img/pravka_osi.jpg",
+            "category": 0,
+            "cost": "3000",
+            "processPeriod": 3,
+            "created": "2024-05-04T10:36:52.080Z",
+            "updated": "2024-05-11T18:37:00.205Z",
+            "isDeleted": false
+        }
+    },
+    {
+        "model": "app.offer",
+        "pk": 8,
+        "fields": {
+            "number": 6,
+            "user": 1,
+            "title": "Фотосъёмка, обработка фото",
+            "slug": "Fotos``yomka, obrabotka foto",
+            "description": "Качественная фотосъёмка с высокими разрешениями. Обработка в Photoshop.",
+            "image": "img/photo_video.jpg",
+            "category": 5,
+            "cost": "500",
+            "processPeriod": 1,
+            "created": "2024-05-10T07:56:15.598Z",
+            "updated": "2024-05-11T18:27:05.465Z",
+            "isDeleted": false
+        }
+    },
+    {
+        "model": "app.offer",
+        "pk": 9,
+        "fields": {
+            "number": 7,
+            "user": 4,
+            "title": "Ведение аккаунтов в соцсетях",
+            "slug": "",
+            "description": "Поддержка активности групповых и пользовательских аккаунтов в различных социальных сетях. Создание, публикация постов рекламного и творческого характера. Профессионально, индивидуальный подход.",
+            "image": "img/social_media.jpg",
+            "category": 4,
+            "cost": "500",
+            "processPeriod": 1,
+            "created": "2024-05-15T05:37:30.986Z",
+            "updated": "2024-05-15T10:04:17.521Z",
+            "isDeleted": false
+        }
+    },
+    {
+        "model": "app.order",
+        "pk": 32,
+        "fields": {
+            "number": 2,
+            "offer": 2,
+            "client": 4,
+            "description": "Чат-бот магазина \"Чайный сервиз\"",
+            "dateStart": "2024-05-14T09:14:41.893Z",
+            "dateEndPlan": "2024-05-16T17:00:00Z",
+            "dateEndFact": "2024-05-13T17:00:00Z",
+            "isAccepted": true,
+            "dateAccept": "2024-05-14T17:00:00Z",
+            "score": 5,
+            "created": "2024-05-14T09:14:41.905Z",
+            "updated": "2024-05-14T18:37:23.713Z",
+            "isDeleted": false
+        }
+    },
+    {
+        "model": "app.order",
+        "pk": 38,
+        "fields": {
+            "number": 3,
+            "offer": 8,
+            "client": 4,
+            "description": "Кино об открытии футбольного сезона",
+            "dateStart": "2024-05-14T17:13:48.922Z",
+            "dateEndPlan": "2024-05-15T17:00:00Z",
+            "dateEndFact": "2024-05-14T17:00:00Z",
+            "isAccepted": false,
+            "dateAccept": null,
+            "score": 0,
+            "created": "2024-05-14T17:13:48.937Z",
+            "updated": "2024-05-14T18:49:37.662Z",
+            "isDeleted": false
+        }
+    },
+    {
+        "model": "app.order",
+        "pk": 39,
+        "fields": {
+            "number": 4,
+            "offer": 9,
+            "client": 7,
+            "description": "Профиль группы \"Наш сад\" в сетях ВК, Одноклассники, Пикабу. Периодичность выпуска постов - 2-3 поста в сутки. Посты наши.",
+            "dateStart": "2024-05-15T05:55:39.735Z",
+            "dateEndPlan": "2024-05-15T17:00:00Z",
+            "dateEndFact": null,
+            "isAccepted": false,
+            "dateAccept": null,
+            "score": 0,
+            "created": "2024-05-15T05:55:39.751Z",
+            "updated": "2024-05-15T10:03:32.955Z",
+            "isDeleted": false
+        }
+    },
+    {
+        "model": "app.order",
+        "pk": 40,
+        "fields": {
+            "number": 5,
+            "offer": 1,
+            "client": 3,
+            "description": "Перевод статьи \"LLM и чат-боты\"",
+            "dateStart": "2024-05-15T08:49:38.554Z",
+            "dateEndPlan": "2024-05-17T17:00:00Z",
+            "dateEndFact": null,
+            "isAccepted": false,
+            "dateAccept": null,
+            "score": 0,
+            "created": "2024-05-15T08:49:38.554Z",
+            "updated": "2024-05-15T08:49:38.554Z",
+            "isDeleted": false
+        }
+    },
+    {
+        "model": "app.order",
+        "pk": 41,
+        "fields": {
+            "number": 6,
+            "offer": 9,
+            "client": 2,
+            "description": "Поддержка telegram-канала \"Здоровая спина\". Один пост в сутки. Обработка моего текста.",
+            "dateStart": "2024-05-15T09:01:10.237Z",
+            "dateEndPlan": "2024-05-15T17:00:00Z",
+            "dateEndFact": "2024-05-14T17:00:00Z",
+            "isAccepted": false,
+            "dateAccept": null,
+            "score": 0,
+            "created": "2024-05-15T09:01:10.237Z",
+            "updated": "2024-05-15T10:03:41.990Z",
+            "isDeleted": false
+        }
+    },
+    {
+        "model": "app.portfolio",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "name": "Сайт платных услуг ГКП №16",
+            "dateRelease": "2021-05-04",
+            "url": "https://gp16.ru",
+            "description": "Сайт платных услуг городской клинической поликлиники №16 г. Новосибирска"
+        }
+    },
+    {
+        "model": "app.portfolio",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "name": "Вебсервис \"Заявки на диагностику\"",
+            "dateRelease": "2019-09-18",
+            "url": "https://gp16.ru:8000",
+            "description": "Корпоративный вебсервис управления заявками пациентов на диагностику для поликлиники №16 г. Новосибирска."
+        }
+    },
+    {
+        "model": "app.profile",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "phoneNumber": "+79963809980",
+            "photo": "img/admin_avatar.jpg",
+            "gender": "М",
+            "dateReg": "2024-05-04",
+            "rate": 0,
+            "city": 1,
+            "specializations": [
+                1,
+                0,
+                5
+            ]
+        }
+    },
+    {
+        "model": "app.profile",
+        "pk": 3,
+        "fields": {
+            "user": 2,
+            "phoneNumber": "+79000000000",
+            "photo": "img/master.jpg",
+            "gender": "М",
+            "dateReg": "2024-05-04",
+            "rate": 0,
+            "city": 4,
+            "specializations": [
+                0,
+                6
+            ]
+        }
+    },
+    {
+        "model": "app.profile",
+        "pk": 4,
+        "fields": {
+            "user": 5,
+            "phoneNumber": "+79000000001",
+            "photo": "img/Oxy.jpg",
+            "gender": "Ж",
+            "dateReg": "2024-05-04",
+            "rate": 0,
+            "city": 1,
+            "specializations": []
+        }
+    },
+    {
+        "model": "app.profile",
+        "pk": 5,
+        "fields": {
+            "user": 3,
+            "phoneNumber": "+79000000002",
+            "photo": "img/Oleg.jpg",
+            "gender": "М",
+            "dateReg": "2024-05-04",
+            "rate": 0,
+            "city": 5,
+            "specializations": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "app.profile",
+        "pk": 6,
+        "fields": {
+            "user": 4,
+            "phoneNumber": "+79000000003",
+            "photo": "img/Misha.jpg",
+            "gender": "М",
+            "dateReg": "2024-05-04",
+            "rate": 0,
+            "city": 2,
+            "specializations": [
+                2,
+                6,
+                4
+            ]
+        }
+    },
+    {
+        "model": "app.profile",
+        "pk": 7,
+        "fields": {
+            "user": 6,
+            "phoneNumber": "+79000000004",
+            "photo": "img/valdiz.jpg",
+            "gender": "М",
+            "dateReg": "2024-05-04",
+            "rate": 0,
+            "city": 1,
+            "specializations": []
+        }
+    },
+    {
+        "model": "app.profile",
+        "pk": 9,
+        "fields": {
+            "user": 7,
+            "phoneNumber": "+79000000005",
+            "photo": "img/dr_livsy.jpg",
+            "gender": "М",
+            "dateReg": "2024-05-14",
+            "rate": 0,
+            "city": 5,
+            "specializations": []
+        }
+    }
+]

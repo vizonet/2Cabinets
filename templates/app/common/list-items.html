@@ -1,0 +1,6 @@
+{# <!-- Распаковка выборки --> #}
+{% if query %}
+    {% for item in query %}
+        {% include item_template %}
+    {% endfor %}
+{% endif %}

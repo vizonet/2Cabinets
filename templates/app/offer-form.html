@@ -1,0 +1,46 @@
+{# <!-- Форма проекта --> #}
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container mb-3">
+
+        {# <!-- Заголовок страницы --> #}
+        {%  with titleBar=titleBar %}
+            {% include 'app/common/bar-title.html' %}
+        {% endwith %}
+
+        {# <!-- форма проекта --> #}
+        <form method="post" enctype="multipart/form-data" class="form-control mt-2 mb-5">
+            {% csrf_token %}
+
+            {# <!-- ошибки формы --> #}
+            {% if offerForm.errors %}
+                <span class="text-danger fw-bold">Ошибки формы:</span>
+                <span class="text-danger">{{ offerForm.errors }}</span>
+
+            {# <!-- сообщения --> #}
+            {% elif savedOK %}
+                <h4 class="mb-3 text-light bg-success pt-1 p-2 text-center"
+                    onmousemove="setTimeout(() => {this.style.cssText = `display: none`}, 1000)">
+                    Проект успешно сохранён!
+                </h4>
+            {% endif %}
+
+            {# <!-- поля формы --> #}
+            {% for field in offerForm %}
+                <div class="mb-2">
+                    <label class="form-label fw-bold">{{ field.label_tag }}</label>
+                    <span>{{ field }}</span>
+                    {# <!-- Ошибки поля формы <p class="text-danger">{{ field.errors }}</p> --> #}
+                </div>
+            {% endfor %}
+
+            {# <!-- кнопки --> #}
+            <div class="mt-3 mb-2 d-flex justify-content-end">
+                <button type="reset" class="btn btn-danger mx-5">Очистить</button>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}

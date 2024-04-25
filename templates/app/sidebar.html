@@ -1,0 +1,27 @@
+<div class="d-flex flex-column flex-shrink-0 align-items-stretch bg-white me-2" style="width: 25%">
+
+    <div class="btn mb-2 p-2 d-flex align-items-center justify-content-center bg-primary border-bottom">
+        <a href="{% url 'offers' %}" class="link-light text-decoration-none">
+            <span class="fs-3 fw-semibold ">{{ sidebar.title }}:</span>
+        </a>
+    </div>
+
+    <div class="list-group list-group-flush scrollarea">
+        {% for profile in users %}
+            <a href="{% url 'offers' profile.user.username %}" class="list-group-item list-group-item-action py-3 lh-tight"
+               onmouseover="this.classList.add('active'); this.setAttribute('aria-current', 'true')"
+               onmouseout="this.classList.remove('active'); this.removeAttribute('aria-current')">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <strong class="mb-1"> {{ profile.user.username }}</strong>
+                    <small>
+                        <span class="fst-italic">Рейтинг:</span>
+                        <span class="badge bg-success rounded-pill">{{ profile.rate }}</span>
+                    </small>
+                </div>
+                <div class="col-10 mb-1 small">{{ profile.get_specializations }}</div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="b-example-divider me-2"></div>

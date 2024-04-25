@@ -1,0 +1,23 @@
+{# <!-- Стартовая страница --> #}
+{% extends "layout.html" %}
+
+{% block content %}
+
+    {% if sidebar %} {% include 'app/sidebar.html' %} {% endif %}
+
+    <div style="width: {{ style.widthRight }}%"
+         class="{% if not sidebar %}container{% endif %}">
+
+        {# <!-- Список действующих --> #}
+        {% if current.count %}
+            {% with cols=current.style.cols query=current.query titleBar=current.titleList elem_id=current.style.elem_id visibility=current.style.visibility item_template=current.item_template style=current.style %}
+                {% include 'app/common/bar-list.html' %}
+            {% endwith %}
+        {% else %} {# <!-- название нераскрывающегося заголовка при пустом списке --> #}
+            {% with titleBar=current.titleBar %}
+                {% include 'app/common/bar-title.html' %}
+            {% endwith %}
+        {% endif %}
+    </div>
+
+{% endblock %}

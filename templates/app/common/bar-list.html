@@ -1,0 +1,17 @@
+{# <!-- Строка заголовка и развертывающийся блок с выборкой элементов (html details) --> #}
+<a class="link-light text-decoration-none"
+   onclick="document.getElementById('{{ elem_id }}').classList.toggle('visually-hidden')">
+
+    {# <!-- Заголовок страницы --> #}
+    {%  with style=style.bar btn='btn' %}
+        {% include 'app/common/bar-title.html' %}
+    {% endwith %}
+</a>
+
+{# <!-- Список элементов --> #}
+<div class="{{ visibility }} row row-cols-1 row-cols-md-{% if cols %}{{ cols }}{% else %}3{% endif %} g-4 mb-2"
+     id="{{ elem_id }}">
+    {% include 'app/common/list-items.html' %}
+</div>
+
+

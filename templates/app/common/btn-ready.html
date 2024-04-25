@@ -1,0 +1,7 @@
+{# <!-- Кнопка отметки о выполнении заказа --> #}
+{% load static %}
+
+<button class="btn btn-sm btn-success"data-bs-toggle="tooltip" title="" data-bs-original-title="Выполнить заказ"
+   onclick="if (confirm('Выполнить проект?')) document.location.href='{% url 'order_success' item.id %}'">Готов!
+</button>
+

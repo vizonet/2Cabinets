@@ -1,0 +1,83 @@
+{# <!-- Просмотр и акцепт заказа --> #}
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+
+        {# <!-- Заголовок страницы --> #}
+        {% with style=style.bar titleBar=titleBar %}
+            {% include 'app/common/bar-title.html' %}
+        {% endwith %}
+
+        {# <!-- Детализация заказа --> #}
+        <div class="row col-12 g-2">
+            <div class="col-3">
+                <div class="card h-100">
+                    <img src="{{ media_url }}{{ order.offer.image }}" class="card-img-top" alt="{{ offer.image }}">
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ order.offer.title }}</h5>
+                        <p class="card-text">{{ order.offer.description }}</p>
+                        <hr class="dropdown-divider">
+                    </div>
+                    <div class="card-body card-text">
+                        <p><strong>Создан: </strong><span>{{ order.created }}</span></p>
+                        <p><strong>Изменён: </strong><span>{{ order.updated }}</span></p>
+                        <p><strong>В работе с: </strong><span>{{ order.dateStart }}</span></p>
+                        <p><strong>Выполнить до: </strong><span class="text-primary">{{ order.dateEndPlan }}</span></p>
+
+                        {% if order.isAccepted %}
+                            <p class="text-success"><strong>Принят заказчиком</strong></p>
+                        {% endif %}
+
+                        <div class="card-text">
+                            {% if order.dateEndFact %}
+                                <strong>Выполнен: </strong>
+                                <span class="{% if order.dateEndPlan < order.dateEndFact %}text-danger
+                                             {% else %}text-success{% endif %}">
+                                    {{ order.dateEndFact }}
+                                </span>
+                            {% else %}
+                                <strong class="text-primary">Выполняется</strong>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end m-3">
+                        {% with item=order %}
+                            {% include 'app/common/btn-order-acсept.html' %}
+                        {% endwith %}
+                    </div>
+                    {# <!-- Футер --> #}
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>Автор:&nbsp;</strong><span><strong class="text-muted">{{ order.offer.user.username }}</strong></span>
+                        </div>
+                        {# <!-- оценка--> #}
+                        {% if order.dateAccept %}
+                            <div class="nav-item dropdown mx-3">
+                                <a id="scoreSet" class="dropdown-toggle nav-link"
+                                   role="button" data-bs-toggle="dropdown" aria-expanded="false" href="javascript: void(0)">
+                                    Оценка {% if order.score %}({{ order.score }}){% endif %}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="scoreSet">
+                                    {% for i in scoreRange %}
+                                        <li><a class="dropdown-item text-end" href="{% url 'order_score' order.pk i %}">{{ i }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% else %}
+                            <span>Оценка доступна после выполнения</span>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer">
+                        <small class="fw-bold d-flex justify-content-center">{{ order.offer.cost }} {{ currency }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

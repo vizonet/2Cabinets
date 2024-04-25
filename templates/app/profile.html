@@ -1,0 +1,64 @@
+{# <!-- Форма профиля пользователя --> #}
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+
+        {# <!-- Заголовок страницы --> #}
+        {%  with titleBar=titleBar %}
+            {% include 'app/common/bar-title.html' %}
+        {% endwith %}
+
+        {# <!-- форма профиля --> #}
+        <form method="post" enctype="multipart/form-data" class="form-control mt-2 mb-5">
+            {% csrf_token %}
+
+            {# <!-- ошибки формы --> #}
+            {% if profileForm.errors %}
+                <label class="text-danger">Ошибки формы:</label>
+                <span class="text-danger">{{ profileForm.errors }}</span>
+
+            {# <!-- сообщения --> #}
+            {% elif savedOK %}
+                <h4 class="mb-3 text-light bg-success pt-1 p-2 text-center"
+                    onmousemove="setTimeout(() => {this.style.cssText = `display: none`}, 1000)">
+                    Профиль успешно сохранён!
+                </h4>
+            {% endif %}
+
+            {# <!-- поля формы --> #}
+            <div class="mb-2">
+                {% for field in profileForm %}
+                    <div class="mt-1">
+                        <label class="form-label fw-bold">{{ field.label_tag }}</label>
+                        <span>{{ field }}</span>
+                    </div>
+                    {# <!-- Ошибки поля формы <p class="text-danger">{{ field.errors }}</p> --> #}
+                {% endfor %}
+                <div class="mt-3">
+                    <p>
+                        <label class="form-label fw-bold">Зарегистрирован:</label>
+                        {{ profileForm.instance.dateReg }}
+                    </p>
+                    <p>
+                        <label class="form-label fw-bold">Специализации:</label>
+                        {{ profileForm.instance.get_specializations }}
+                    </p>
+                    <p>
+                        <label class="form-label fw-bold">Опыт работы в системе:</label>
+                        {{ profileForm.instance.experience }}
+                    </p>
+                    <p>
+                        <label class="form-label fw-bold">Рейтинг:</label>
+                        {{ profileForm.instance.rate }}
+                    </p>
+                </div>
+            </div>
+            {# <!-- кнопки --> #}
+            <div class="mt-3 mb-2 d-flex justify-content-end">
+                <button type="reset" class="btn btn-danger mx-5">Очистить</button>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

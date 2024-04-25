@@ -1,0 +1,23 @@
+{# <!-- Кнопки обработки проекта --> #}
+{% load static %}
+
+<div class="">
+    <a class="btn btn-sm text-success" href="{% url 'offer_edit' item.id %}"
+       data-bs-toggle="tooltip" title="" data-bs-original-title="Редактировать">
+        <img src="{% static 'img/edit.ico' %}" width="40" height="40" class="" alt="Редактировать">
+    </a>
+
+    {% if item.isDeleted %} {# <!-- удалить или восстановить проект --> #}
+        <a class="btn btn-sm text-danger" href="javascript: void(0)"
+           data-bs-toggle="tooltip" title="" data-bs-original-title="Восстановить"
+           onclick="if (confirm('Восстановить проект?')) this.href = '{% url 'offer_delete' item.id 0 %}'">
+            <img src="{% static 'img/restore.ico' %}" width="40" height="40" class="" alt="Восстановить">
+        </a>
+    {% else %}
+        <a class="btn btn-sm text-danger" href="javascript: void(0)"
+           data-bs-toggle="tooltip" title="" data-bs-original-title="Удалить"
+           onclick="if (confirm('Удалить проект?')) this.href = '{% url 'offer_delete' item.id %}'">
+            <img src="{% static 'img/delete.ico' %}" width="40" height="40" class="" alt="Удалить">
+        </a>
+    {% endif %}
+</div>

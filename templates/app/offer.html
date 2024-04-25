@@ -1,0 +1,107 @@
+{# <!-- Просмотр проекта --> #}
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+        {# <!-- Заголовок страницы --> #}
+        {%  with titleBar=titleBar %}
+            {% include 'app/common/bar-title.html' %}
+        {% endwith %}
+
+        {# <!-- Детализация проекта --> #}
+        <div class="row col-12 g-2">
+            {# <!-- картинка --> #}
+            <div class="col-3">
+                <div class="card h-100">
+                    <img src="{{ media_url }}{{ offer.image }}" class="card-img-top" alt="{{ offer.image }}">
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="card h-100">
+                    {# <!-- атрибуты --> #}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ offer.title }}</h5>
+                        <p class="card-text">{{ offer.description }}</p>
+                        <hr class="dropdown-divider">
+                    </div>
+                    <div class="card-body card-text text-muted">
+                        <p><strong>Создан: </strong>{{ offer.created }}</p>
+                        <p><strong>Обновлён: </strong>{{ offer.updated }}</p>
+                        <p><strong>Дней на выполнение (min): </strong>{{ offer.processPeriod }}</p>
+                    </div>
+
+                    <div class="card-body text-primary">
+                        {% with orders=offer.get_orders %}
+                            {% if request.user == offer.user and orders %}
+                                <strong>Выполняется: </strong>
+                                {# <!-- текущие заказы по данноиу проекту --> #}
+                                {% for order in orders %}
+                                    <div class="ms-3 mb-2 d-flex justify-content-between align-items-center">
+                                        <div class="col-10">
+                                            <a class="page-link" href="{% url 'order' order.pk %}">
+                                                <span>Заказ #{{ order.number }}, заказчик: <strong>{{ order.client }}</strong>, закончить:</span>
+                                                <strong>{{ order.dateEndPlan }}</strong>
+                                                {% if order.dateEndFact %}
+                                                    <span>, готов: </span>
+                                                    <strong class="{% if order.dateEndFact > order.dateEndPlan %} text-danger{% else %}text-success{% endif %}">
+                                                        {{ order.dateEndFact }}
+                                                    </strong>
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                        <div class="col-2">
+                                            <span class="ms-2">
+                                                {# <!-- кнопка выполнить/отменить выполнение --> #}
+                                                {% if not item.isDeleted %}
+                                                    {% with item=order %}
+                                                        {% if not order.isAccepted %}
+                                                            {% if not order.dateEndFact %}
+                                                                {% include 'app/common/btn-ready.html' %}
+                                                            {% else %}
+                                                                {% include 'app/common/btn-undo.html' %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        {%  if offer.get_accepted_orders_str %}
+                            <div class="card-text text-muted">
+                                <strong>История заказов: </strong>{{ offer.get_accepted_orders_str }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <span>Автор: <strong class="text-muted">{{ offer.user.username }}</strong></span>
+                        {# <!-- кнопки обработки --> #}
+                        {% if offer.user == request.user %}
+                            {# <!-- редактирование только своих проектов --> #}
+                            {% with item=offer %}
+                                {% include 'app/common/offer-btns.html' %}
+                            {% endwith %}
+                        {% endif %}
+                    </div>
+
+                    {# <!-- Заказ проекта / просмотр деталей --> #}
+                    <div class="card-footer d-flex justify-content-end">
+                        {% if offer.user == request.user %}
+                            <span class="text-primary me-1">Мой проект: </span>
+                            <strong>{{ offer.cost }} {{ currency }}</strong>
+                        {% else %}
+                            <a href="{% url 'order_new' offer.id %}" class="btn btn-success m-3"
+                            onclick="if (confirm('Заказать проект за {{ offer.cost }} {{ currency }}?'))
+                                document.location.href=this.href">
+                                {{ process }}</a>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Picture</title>
+</head>
+<body>
+    <div>
+        <h1>{{ title }}:</h1>
+        <img src="{% get_media_prefix %}{{ file }}" alt="{{ altData }}"/>
+    </div>
+</body>
+</html>

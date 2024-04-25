@@ -1,0 +1,10 @@
+{# <!-- Проекты пользователя в работе --> #}
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+        {% with query=inwork.query item_template=inwork.item_template %}
+            {% include 'app/common/title-list.html' %}
+        {% endwith %}
+    </div>
+{% endblock %}

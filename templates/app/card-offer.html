@@ -1,0 +1,34 @@
+{# <!-- карточка проекта --> #}
+{% load static %}
+
+<div class="col">
+    <div class="card h-100">
+        <img src="{{ media_url }}{{ item.image }}" class="card-img-top" alt="{{ item.image }}">
+
+        <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">{{ item.description }}</p>
+         </div>
+
+        <div class="card-footer d-flex justify-content-between align-items-center">
+            <span>Автор: <strong class="text-muted">{{ item.user.username }}</strong></span>
+
+            {# <!-- Кнопки проекта --> #}
+            {% if item.user == request.user %} {# <!-- редактирование своих проектов --> #}
+                {% include 'app/common/offer-btns.html' %}
+            {% endif %}
+
+        </div>
+
+        <div class="card-footer text-center">
+            <a class="btn btn-sm" href="{% url 'offer' item.id %}">
+                {% if item.user == request.user %}
+                    <strong class="text-primary">Мой проект: {{ item.cost }} {{ currency }}</strong>
+                {% else %}
+                    <strong class="text-success">Заказать за {{ item.cost }} {{ currency }}</strong>
+                {% endif %}
+            </a>
+        </div>
+
+    </div>
+</div>

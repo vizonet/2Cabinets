@@ -1,0 +1,45 @@
+{# <!-- Страница кабинета пользователя --> #}
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+
+        {# <!-- Заголовок страницы --> #}
+        {%  with style=style.bar %}
+            {% include 'app/common/bar-title.html' %}
+        {% endwith %}
+
+        {# <!-- Список в работе --> #}
+        {% if inwork.count %}
+            {% with cols=inwork.style.cols query=inwork.query titleBar=inwork.titleList elem_id=inwork.style.elem_id visibility=inwork.style.visibility item_template=inwork.item_template style=inwork.style %}
+                {% include 'app/common/bar-list.html' %}
+            {% endwith %}
+        {% endif %}
+
+        {# <!-- Список действующих не в работе --> #}
+        {% if current.count %}
+            {% with cols=current.style.cols query=current.query titleBar=current.titleList elem_id=current.style.elem_id visibility=current.style.visibility item_template=current.item_template style=current.style %}
+                {% include 'app/common/bar-list.html' %}
+            {% endwith %}
+        {% else %} {# <!-- название нераскрывающегося заголовка при пустом списке --> #}
+            {% with titleBar=current.titleBar %}
+                {% include 'app/common/bar-title.html' %}
+            {% endwith %}
+        {% endif %}
+
+        {# <!-- Список завершённых --> #}
+        {% if completed.count %}
+            {% with cols=completed.style.cols query=completed.query titleBar=completed.titleList elem_id=completed.style.elem_id visibility=completed.style.visibility item_template=completed.item_template style=completed.style %}
+                {% include 'app/common/bar-list.html' %}
+            {% endwith %}
+        {% endif %}
+
+        {# <!-- Список удаленных --> #}
+        {% if del.count %}
+            {% with cols=del.style.cols query=del.query titleBar=del.titleList elem_id=del.style.elem_id visibility=del.style.visibility item_template=del.item_template style=del.style %}
+                {% include 'app/common/bar-list.html' %}
+            {% endwith %}
+        {% endif %}
+
+    </div>
+{% endblock %}

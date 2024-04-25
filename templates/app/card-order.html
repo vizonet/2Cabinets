@@ -1,0 +1,64 @@
+{# <!-- карточка заказа --> #}
+{% load static %}
+
+<div class="col">
+    <a href="{% url 'order' item.pk %}"  class="text-decoration-none text-dark"
+       onmouseover="this.parentNode.classList.add('shadow-lg')"
+       onmouseout="this.parentNode.classList.remove('shadow-lg')">
+        <div class="card h-100">
+            <img src="{{ media_url }}{{ item.offer.image }}" class="card-img-top" alt="{{ item.image }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ item.offer.title }}</h5>
+                <p class="card-text">{{ item.offer.description }}</p>
+                <p><strong>В работе с: </strong>{{ item.dateStart }}</p>
+                <p><strong>Выполнить до: </strong>{{ item.dateEndPlan }}</p>
+
+                {% if item.dateEndFact %}
+                    <p class="text-success"><strong>Готов: </strong>{{ item.dateEndFact }}</p>
+                {% else %}
+                    <p class="text-primary"><strong>Выполняется</strong></p>
+                {% endif %}
+                {% if item.dateAccept %}
+                    <p class="text-success"><strong>Принят: </strong>{{ item.dateAccept }}</p>
+                {% endif %}
+                {% if item.isDeleted %}
+                    <p class="text-dark"><strong>Удалён</strong></p>
+                {% endif %}
+
+            </div>
+
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>Автор: </strong><strong class="text-muted">{{ item.offer.user.username }}</strong>
+                </div>
+                {# <!-- кнопки обработки --> #}
+                <a class="btn btn-sm text-success" href="{% url 'order_edit' item.pk %}"
+                   data-bs-toggle="tooltip" title="" data-bs-original-title="Редактировать">
+                    <img src="{% static 'img/edit.ico' %}" width="40" height="40" class="" alt="Редактировать">
+                </a>
+                {# <!-- оценка--> #}
+                <div class="nav-item dropdown mx-3">
+                    {% if item.dateAccept %}
+                        <a id="scoreSet" class="dropdown-toggle nav-link"
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false" href="javascript: void(0)">
+                            Оценка {% if item.score %}({{ item.score }}){% endif %}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="scoreSet">
+                            {% for i in scoreRange %}
+                                <li><a class="dropdown-item text-end" href="{% url 'order_score' item.pk i %}">{{ i }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <span>Оценки нет</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-body d-flex justify-content-center align-items-center">
+                {% include 'app/common/btn-order-acсept.html' %}
+            </div>
+            <div class="card-footer">
+                <small class="fw-bold d-flex justify-content-center">{{ item.offer.cost }} {{ currency }}</small>
+            </div>
+         </div>
+    </a>
+</div>

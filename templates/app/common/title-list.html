@@ -1,0 +1,11 @@
+{# <!-- Список объектов с панелью заголовка --> #}
+
+{# <!-- Заголовок страницы --> #}
+{%  with titleBar=titleBar %}
+    {% include 'app/common/bar-title.html' %}
+{% endwith %}
+
+{# <!-- Список проектов --> #}
+<div class="row row-cols-1 row-cols-md-4 g-4 mt-1">
+    {% include 'app/common/list-items.html' %}
+</div>

@@ -1,0 +1,32 @@
+<div>
+    {% if user.is_authenticated %}
+        <!-- форма выхода из системы -->
+        <form id="logoutForm" action="{% url 'logout' %}" method="post" class="navbar-right">
+            {% csrf_token %}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown mx-3">
+                    <a id="userMenu" class="dropdown-toggle nav-link"
+                       role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                        {{ user.username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userMenu">
+                        <li><a class="dropdown-item" href="{% url 'profile' %}">Профиль</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'cab_client' %}">Я - заказчик</a></li>
+                        <li><a class="dropdown-item" href="{% url 'cab_worker' %}">Я - исполнитель</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn btn-outline-info"
+                       href="javascript: document.getElementById('logoutForm').submit()">Выход
+                    </a>
+                </li>
+            </ul>
+        </form>
+    {% else %}
+        <a class="btn btn-outline-info ms-2" href="{% url 'login' %}">Вход</a>
+    {% endif %}
+</div>
+
+

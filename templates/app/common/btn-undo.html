@@ -1,0 +1,8 @@
+{# <!-- Кнопка отмены выполненния заказа --> #}
+{% load static %}
+
+<a class="btn btn-sm text-success" href=""
+   data-bs-toggle="tooltip" title="" data-bs-original-title="Отменить выполнение"
+   onclick="if (confirm('Отменить выполнение?')) this.href = '{% url 'order_success' item.id 0 %}'">
+    <img src="{% static 'img/undo.ico' %}" width="30" height="30" class="" alt="Отменить выполнение">
+</a>

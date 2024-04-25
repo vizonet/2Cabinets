@@ -1,0 +1,11 @@
+{# <!-- кнопка: принять заказ --> #}
+
+{% if not item.isDeleted and item.dateEndFact and not item.isAccepted %}
+    <div class="card-text d-flex justify-content-center">
+        <a class="btn btn-sm btn-success" href="javascript: void(0)"
+           onclick="if (confirm('Принять заказ?\nСредства будут переведены исполнителю!'))
+               this.href = '{% url 'order_accept' item.pk %}'">
+            Принять заказ
+        </a>
+    </div>
+{% endif %}
